@@ -31,13 +31,13 @@ services:
         source: ./kibana/config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
-    port:
+    ports:
       - "5601:5601"
     networks:
       - elastic
     depends_on: 
       - elasticsearch
-      
+
 networks:
   elastic:
     driver: bridge
