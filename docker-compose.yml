@@ -70,6 +70,16 @@ services:
       - elastic
     depends_on: 
       - logstash
+    volumes:
+      - type: bind
+        source: ./logstashSecond/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./logstashSecond/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+        
     
   
 
