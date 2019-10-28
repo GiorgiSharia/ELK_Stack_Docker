@@ -21,6 +21,23 @@ services:
     environment: 
       ELASTIC_PASSWORD: notagoodpassword
 
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.4.1
+    container_name: kibanalocal
+    build:
+      context: kibana/
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    port:
+      - "5601:5601"
+    networks:
+      - elastic
+    depends_on: 
+      - elasticsearch
+      
 networks:
   elastic:
     driver: bridge
