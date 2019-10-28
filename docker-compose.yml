@@ -59,6 +59,19 @@ services:
         target: /usr/share/logstash/pipeline
         read_only: true
   
+  logstashSecond:
+    image: docker.elastic.co/logstash/logstash:7.4.1
+    container_name: logstashlocalSecond
+    build:
+      context: logstashSecond/
+    ports:
+      - "9600:9600"
+    networks:
+      - elastic
+    depends_on: 
+      - logstash
+    
+  
 
 networks:
   elastic:
