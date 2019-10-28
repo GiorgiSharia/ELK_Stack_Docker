@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.1
+    container_name: elasticsearchlocal
+    build:
+      context: elasticsearch/
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: ./elasticsearch
+        target: /usr/share/elasticsearch/data
+    networks:
+      - elastic
+    ports:
+       - "9200:9200"
+    environment: 
+      ELASTIC_PASSWORD: notagoodpassword
+
+networks:
+  elastic:
+    driver: bridge
+
+volumes:
+  elasticsearch:
+  
+
