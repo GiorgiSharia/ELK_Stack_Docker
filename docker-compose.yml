@@ -59,26 +59,26 @@ services:
         target: /usr/share/logstash/pipeline
         read_only: true
   
-  logstashSecond:
-    image: docker.elastic.co/logstash/logstash:7.4.1
-    container_name: logstashlocalSecond
-    build:
-      context: logstashSecond/
-    ports:
-      - "9600:9600"
-    networks:
-      - elastic
-    depends_on: 
-      - logstash
-    volumes:
-      - type: bind
-        source: ./logstashSecond/config/logstash.yml
-        target: /usr/share/logstash/config/logstash.yml
-        read_only: true
-      - type: bind
-        source: ./logstashSecond/pipeline
-        target: /usr/share/logstash/pipeline
-        read_only: true
+ # logstashSecond:
+ #   image: docker.elastic.co/logstash/logstash:7.4.1
+ #   container_name: logstashlocalSecond
+ #   build:
+  #    context: logstashSecond/
+  #  ports:
+  #    - "9600:9600"
+ #   networks:
+ #     - elastic
+  #  depends_on: 
+  #    - logstash
+  #  volumes:
+   #   - type: bind
+   #     source: ./logstashSecond/config/logstash.yml
+  #      target: /usr/share/logstash/config/logstash.yml
+   #     read_only: true
+  #    - type: bind
+  #      source: ./logstashSecond/pipeline
+   #     target: /usr/share/logstash/pipeline
+  #      read_only: true
         
     
   
