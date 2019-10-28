@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.1
     container_name: elasticsearchlocal
     build:
       context: elasticsearch/
@@ -22,7 +22,7 @@ services:
       ELASTIC_PASSWORD: notagoodpassword
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:7.4.1
+    image: docker.elastic.co/kibana/kibana:7.4.1
     container_name: kibanalocal
     build:
       context: kibana/
@@ -37,6 +37,8 @@ services:
       - elastic
     depends_on: 
       - elasticsearch
+
+  
 
 networks:
   elastic:
